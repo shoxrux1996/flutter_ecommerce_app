@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
       appBar: const CustomAppBar(
         title: 'Zero to Unicorn',
       ),
-      bottomNavigationBar: const CustomNavBar(),
+      bottomNavigationBar: const HomeNavBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [

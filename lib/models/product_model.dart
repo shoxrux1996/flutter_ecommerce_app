@@ -8,6 +8,8 @@ class Product extends Equatable {
   final double price;
   final bool isRecommended;
   final bool isPopular;
+  final bool isInWishlist;
+  final bool isInCart;
 
   const Product({
     required this.id,
@@ -17,6 +19,8 @@ class Product extends Equatable {
     required this.price,
     required this.isRecommended,
     required this.isPopular,
+    this.isInWishlist = false,
+    this.isInCart = false,
   });
 
   @override

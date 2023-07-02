@@ -19,7 +19,7 @@ class CartScreen extends StatelessWidget {
       appBar: CustomAppBar(
         title: 'Zero to Unicorn',
       ),
-      bottomNavigationBar: CustomNavBar(),
+      bottomNavigationBar: HomeNavBar(),
     );
   }
 }
