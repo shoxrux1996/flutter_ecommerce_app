@@ -6,34 +6,34 @@ part 'wishlist_event.dart';
 part 'wishlist_state.dart';
 
 class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
-  WishlistBloc() : super(WishlistLoading()) {
-    on<LoadWishlist>(_onLoadWishlist);
-    on<AddProductToWishlist>(_onAddProductToWishlist);
-    on<RemoveProductFromWishlist>(_onRemoveProductFromWishlist);
+  WishlistBloc() : super(WishlistLoadingState()) {
+    on<LoadWishlistEvent>(_onLoadWishlist);
+    on<AddProductToWishlistEvent>(_onAddProductToWishlist);
+    on<RemoveProductFromWishlistEvent>(_onRemoveProductFromWishlist);
   }
 
   void _onLoadWishlist(
-    LoadWishlist event,
+    LoadWishlistEvent event,
     Emitter<WishlistState> emit,
   ) async {
-    emit(WishlistLoading());
+    emit(WishlistLoadingState());
     try {
       await Future.delayed(const Duration(seconds: 1));
-      emit(const WishlistLoaded());
+      emit(const WishlistLoadedState());
     } on Exception {
-      emit(WishlistError());
+      emit(WishlistErrorState());
     }
   }
 
   void _onAddProductToWishlist(
-    AddProductToWishlist event,
+    AddProductToWishlistEvent event,
     Emitter<WishlistState> emit,
   ) {
     final state = this.state;
-    if (state is WishlistLoaded) {
+    if (state is WishlistLoadedState) {
       try {
         emit(
-          WishlistLoaded(
+          WishlistLoadedState(
             wishlist: Wishlist(
               products: List.from(state.wishlist.products)..add(event.product),
             ),
@@ -41,19 +41,21 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
         );
       } on Exception {
         emit(
-          WishlistError(),
+          WishlistErrorState(),
         );
       }
     }
   }
 
   void _onRemoveProductFromWishlist(
-      RemoveProductFromWishlist event, Emitter<WishlistState> emit) {
+    RemoveProductFromWishlistEvent event,
+    Emitter<WishlistState> emit,
+  ) {
     final state = this.state;
-    if (state is WishlistLoaded) {
+    if (state is WishlistLoadedState) {
       try {
         emit(
-          WishlistLoaded(
+          WishlistLoadedState(
             wishlist: Wishlist(
               products: List.from(state.wishlist.products)
                 ..remove(event.product),
@@ -62,7 +64,7 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
         );
       } on Exception {
         emit(
-          WishlistError(),
+          WishlistErrorState(),
         );
       }
     }

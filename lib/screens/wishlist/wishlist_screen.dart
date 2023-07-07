@@ -24,13 +24,13 @@ class WishlistScreen extends StatelessWidget {
       bottomNavigationBar: const HomeNavBar(),
       body: BlocBuilder<WishlistBloc, WishlistState>(
         builder: (context, state) {
-          if (state is WishlistLoading) {
+          if (state is WishlistLoadingState) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           }
 
-          if (state is WishlistLoaded) {
+          if (state is WishlistLoadedState) {
             return GridView.builder(
               padding: const EdgeInsets.symmetric(
                 horizontal: 8.0,

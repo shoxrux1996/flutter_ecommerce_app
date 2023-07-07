@@ -26,14 +26,14 @@ class _ProductNavBarState extends State<ProductNavBar> {
           ),
           BlocBuilder<WishlistBloc, WishlistState>(
             builder: (context, state) {
-              if (state is WishlistLoading) {
+              if (state is WishlistLoadingState) {
                 return const CircularProgressIndicator();
-              } else if (state is WishlistLoaded) {
+              } else if (state is WishlistLoadedState) {
                 // check product in wishlist
                 return IconButton(
                   onPressed: () {
                     context.read<WishlistBloc>().add(
-                          AddProductToWishlist(widget.product),
+                          AddProductToWishlistEvent(widget.product),
                         );
 
                     const snackbar = SnackBar(
