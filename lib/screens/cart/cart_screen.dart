@@ -34,7 +34,7 @@ class CartScreen extends StatelessWidget {
           }
         },
       ),
-      bottomNavigationBar: const GoToCheckoutNavBar(),
+      bottomNavigationBar: const HomeNavBar(),
     );
   }
 }
@@ -63,8 +63,8 @@ class CartView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      state.cart.deliveryFeeString,
-                      style: Theme.of(context).textTheme.headlineSmall,
+                      state.cart.freeDeliveryString,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                     ElevatedButton(
                       onPressed: () {
@@ -134,6 +134,22 @@ class CartView extends StatelessWidget {
                         ),
                       ],
                     ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'TOTAL',
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                        Text(
+                          '\$${state.cart.totalString}',
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -141,7 +157,6 @@ class CartView extends StatelessWidget {
                 children: [
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    height: 60,
                     decoration: BoxDecoration(
                       color: Colors.black.withAlpha(50),
                     ),
@@ -180,6 +195,7 @@ class CartView extends StatelessWidget {
                   ),
                 ],
               ),
+              
             ],
           ),
         ],

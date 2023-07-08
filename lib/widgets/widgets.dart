@@ -7,5 +7,4 @@ export 'product_carousel.dart';
 export 'navbars/custom_navbar.dart';
 export 'navbars/home_navbar.dart';
 export 'navbars/product_navbar.dart';
-export 'navbars/go_to_checkout_navbar.dart';
 export 'cart_product_card.dart';

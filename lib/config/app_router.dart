@@ -5,10 +5,8 @@ import 'package:flutter_ecommerce_app/screens/screens.dart';
 class AppRouter {
   static Route onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case HomeScreen.routeName:
-        return HomeScreen.route();
-      case CartScreen.routeName:
-        return CartScreen.route();
+      case RootScreen.routeName:
+        return RootScreen.route();
       case CatalogScreen.routeName:
         return CatalogScreen.route(category: settings.arguments as Category);
       case ProductScreen.routeName:
