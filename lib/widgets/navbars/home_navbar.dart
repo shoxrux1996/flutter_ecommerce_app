@@ -13,30 +13,32 @@ class HomeNavBar extends StatelessWidget {
     return CustomNavBar(
       widget: BlocBuilder<NavbarCubit, NavbarState>(
         builder: (context, state) {
+          var firstActive = state.index == 0;
+          var secondActive = state.index == 1;
+          var thirdActive = state.index == 2;
           return BottomNavigationBar(
               backgroundColor: Colors.black,
               currentIndex: 0,
               showSelectedLabels: false,
               showUnselectedLabels: false,
-              items: const [
+              items: [
                 BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.home,
-                    color: Colors.white,
-                  ),
-                  label: 'Home',
-                ),
+                    icon: HomeNavbarItem(
+                      active: firstActive,
+                      iconData: Icons.home,
+                    ),
+                    label: 'Home'),
                 BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.shopping_cart,
-                    color: Colors.white,
+                  icon: HomeNavbarItem(
+                    active: secondActive,
+                    iconData: Icons.shopping_cart,
                   ),
                   label: 'Cart',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.person,
-                    color: Colors.white,
+                  icon: HomeNavbarItem(
+                    active: thirdActive,
+                    iconData: Icons.person,
                   ),
                   label: 'Profile',
                 ),
@@ -46,6 +48,43 @@ class HomeNavBar extends StatelessWidget {
               });
         },
       ),
+    );
+  }
+}
+
+class HomeNavbarItem extends StatelessWidget {
+  final bool active;
+  final IconData iconData;
+
+  const HomeNavbarItem({
+    super.key,
+    required this.active,
+    required this.iconData,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    var color = active ? Colors.white : Colors.transparent;
+    return Column(
+      children: [
+        FractionallySizedBox(
+          widthFactor: 0.5,
+          child: Container(
+            margin: const EdgeInsets.only(bottom: 4.0),
+            height: 4,
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: const BorderRadius.all(
+                Radius.circular(12),
+              ),
+            ),
+          ),
+        ),
+        Icon(
+          iconData,
+          color: Colors.white,
+        ),
+      ],
     );
   }
 }

@@ -7,13 +7,6 @@ class NavbarCubit extends Cubit<NavbarState> {
   NavbarCubit() : super(const NavbarState());
 
   void setTab(int index) {
-    switch (index) {
-      case 0:
-        emit(const NavbarState(item: NavbarItem.home));
-      case 1:
-        emit(const NavbarState(item: NavbarItem.cart));
-      case 2:
-        emit(const NavbarState(item: NavbarItem.profile));
-    }
+    emit(NavbarState(index: index));
   }
 }

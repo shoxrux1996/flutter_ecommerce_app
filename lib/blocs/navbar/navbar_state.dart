@@ -1,12 +1,10 @@
 part of 'navbar_cubit.dart';
 
 class NavbarState extends Equatable {
-  final NavbarItem item;
+  final int index;
 
-  const NavbarState({this.item = NavbarItem.home});
+  const NavbarState({this.index = 0});
 
   @override
-  List<Object> get props => [item];
+  List<Object> get props => [index];
 }
-
-enum NavbarItem { home, cart, profile }

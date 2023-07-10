@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/blocs/cart/cart_bloc.dart';
 import 'package:flutter_ecommerce_app/models/models.dart';
+import 'package:flutter_ecommerce_app/screens/screens.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -23,9 +24,12 @@ class ProductCard extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushNamed(
-          '/product',
-          arguments: product,
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => ProductScreen(
+              product: product,
+            ),
+          ),
         );
       },
       child: Stack(

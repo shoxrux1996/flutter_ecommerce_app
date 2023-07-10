@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/models/models.dart';
+import 'package:flutter_ecommerce_app/screens/screens.dart';
 
 class HeroCarouselCard extends StatelessWidget {
   final Category category;
@@ -10,7 +11,11 @@ class HeroCarouselCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushNamed('/catalog', arguments: category);
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => CatalogScreen(category: category),
+          ),
+        );
       },
       child: Container(
         margin: const EdgeInsets.symmetric(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/screens/screens.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSize {
   final String title;
@@ -35,7 +36,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSize {
       actions: [
         IconButton(
           onPressed: () {
-            Navigator.pushNamed(context, '/wishlist');
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const WishlistScreen(),
+              ),
+            );
           },
           icon: const Icon(Icons.favorite),
         )
