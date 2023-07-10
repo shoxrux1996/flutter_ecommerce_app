@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/blocs/cart/cart_bloc.dart';
-import 'package:flutter_ecommerce_app/screens/screens.dart';
 import 'package:flutter_ecommerce_app/widgets/widgets.dart';
 
 class CartScreen extends StatelessWidget {
@@ -60,41 +59,26 @@ class CartView extends StatelessWidget {
           Expanded(
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      state.cart.freeDeliveryString,
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        // Navigator.of(context).push(
-                        //   MaterialPageRoute(
-                        //     builder: (context) => const HomeScreen(),
-                        //   ),
-                        // );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
-                        shape: const RoundedRectangleBorder(),
-                        elevation: 0,
-                      ),
-                      child: const Text('Add More Items'),
-                    ),
-                  ],
-                ),
                 const SizedBox(
                   height: 10,
                 ),
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: state.cart.items.length,
-                    itemBuilder: (context, index) {
-                      return CartProductCard(
-                        item: state.cart.items[index],
-                      );
-                    },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          color: Colors.black.withOpacity(0.1),
+                        ),
+                      ),
+                    ),
+                    child: ListView.builder(
+                      itemCount: state.cart.items.length,
+                      itemBuilder: (context, index) {
+                        return CartProductCard(
+                          item: state.cart.items[index],
+                        );
+                      },
+                    ),
                   ),
                 ),
               ],
@@ -102,7 +86,7 @@ class CartView extends StatelessWidget {
           ),
           Column(
             children: [
-              const Divider(thickness: 2),
+              const Divider(thickness: 1),
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 40.0,
