@@ -15,7 +15,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: CustomAppBar.defaultAppBar(
         title: 'Profile',
       ),
-      bottomNavigationBar: const HomeBottomAppBar(),
+      bottomNavigationBar: const DefaultBottomAppBar(),
       body: Container(),
     );
   }

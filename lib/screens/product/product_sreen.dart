@@ -28,7 +28,7 @@ class ProductScreen extends StatelessWidget {
       appBar: CustomAppBar.defaultAppBar(
         title: product.name,
       ),
-      bottomNavigationBar: const HomeBottomAppBar(),
+      bottomNavigationBar: const DefaultBottomAppBar(),
       body: ListView(
         children: [
           CarouselSlider(

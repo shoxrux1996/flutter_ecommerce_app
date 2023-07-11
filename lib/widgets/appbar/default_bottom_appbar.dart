@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/blocs/navbar/navbar_cubit.dart';
 import 'package:flutter_ecommerce_app/widgets/appbar/custom_bottom_appbar.dart';
 
-class HomeBottomAppBar extends StatelessWidget {
-  const HomeBottomAppBar({
+class DefaultBottomAppBar extends StatelessWidget {
+  const DefaultBottomAppBar({
     super.key,
   });
 
