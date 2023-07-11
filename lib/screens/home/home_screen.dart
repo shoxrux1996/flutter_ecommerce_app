@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: CustomAppBar.defaultAppBar(
         title: 'Zero to Unicorn',
       ),
-      bottomNavigationBar: const HomeNavBar(),
+      bottomNavigationBar: const HomeBottomAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [

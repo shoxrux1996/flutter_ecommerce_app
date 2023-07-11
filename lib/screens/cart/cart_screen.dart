@@ -34,7 +34,7 @@ class CartScreen extends StatelessWidget {
           }
         },
       ),
-      bottomNavigationBar: const HomeNavBar(),
+      bottomNavigationBar: const HomeBottomAppBar(),
     );
   }
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class CustomNavBar extends StatelessWidget {
+class CustomBottomAppBar extends StatelessWidget {
   final Widget widget;
 
-  const CustomNavBar({
+  const CustomBottomAppBar({
     super.key,
     required this.widget,
   });

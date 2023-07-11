@@ -4,18 +4,18 @@ import 'package:flutter_ecommerce_app/blocs/wishlist/wishlist_bloc.dart';
 import 'package:flutter_ecommerce_app/models/product_model.dart';
 import 'package:flutter_ecommerce_app/widgets/widgets.dart';
 
-class ProductNavBar extends StatefulWidget {
+class ProductBottomAppBar extends StatefulWidget {
   final Product product;
-  const ProductNavBar({super.key, required this.product});
+  const ProductBottomAppBar({super.key, required this.product});
 
   @override
-  State<ProductNavBar> createState() => _ProductNavBarState();
+  State<ProductBottomAppBar> createState() => _ProductBottomAppBarState();
 }
 
-class _ProductNavBarState extends State<ProductNavBar> {
+class _ProductBottomAppBarState extends State<ProductBottomAppBar> {
   @override
   Widget build(BuildContext context) {
-    return CustomNavBar(
+    return CustomBottomAppBar(
       widget: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [

@@ -26,7 +26,7 @@ class CatalogScreen extends StatelessWidget {
       appBar: CustomAppBar.defaultAppBar(
         title: category.name,
       ),
-      bottomNavigationBar: const HomeNavBar(),
+      bottomNavigationBar: const HomeBottomAppBar(),
       body: GridView.builder(
         padding: const EdgeInsets.symmetric(
           horizontal: 8.0,

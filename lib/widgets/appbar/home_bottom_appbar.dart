@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/blocs/navbar/navbar_cubit.dart';
-import 'package:flutter_ecommerce_app/widgets/navbars/custom_navbar.dart';
+import 'package:flutter_ecommerce_app/widgets/appbar/custom_bottom_appbar.dart';
 
-class HomeNavBar extends StatelessWidget {
-  const HomeNavBar({
+class HomeBottomAppBar extends StatelessWidget {
+  const HomeBottomAppBar({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return CustomNavBar(
+    return CustomBottomAppBar(
       widget: BlocBuilder<NavbarCubit, NavbarState>(
         builder: (context, state) {
           var firstActive = state.index == 0;
