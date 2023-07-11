@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<NavbarCubit>(
+        BlocProvider(
           create: (_) => NavbarCubit(),
         ),
         BlocProvider(

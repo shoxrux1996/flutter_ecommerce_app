@@ -23,7 +23,7 @@ class CatalogScreen extends StatelessWidget {
         .toList();
 
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: CustomAppBar.defaultAppBar(
         title: category.name,
       ),
       bottomNavigationBar: const HomeNavBar(),

@@ -14,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(
+      appBar: CustomAppBar.defaultAppBar(
         title: 'Zero to Unicorn',
       ),
       bottomNavigationBar: const HomeNavBar(),
@@ -49,11 +49,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   .toList(),
             ),
           ],
-        ),
-      ),
-      drawer: Drawer(
-        child: Container(
-          color: Colors.black,
         ),
       ),
     );

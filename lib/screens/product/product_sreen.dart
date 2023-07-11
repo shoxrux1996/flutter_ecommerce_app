@@ -25,7 +25,7 @@ class ProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: CustomAppBar.defaultAppBar(
         title: product.name,
       ),
       bottomNavigationBar: const HomeNavBar(),

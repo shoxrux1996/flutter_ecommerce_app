@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/models/models.dart';
 import 'package:flutter_ecommerce_app/screens/screens.dart';
+import 'package:flutter_ecommerce_app/widgets/widgets.dart';
 
 class AppRouter {
   static Route onGenerateRoute(RouteSettings settings) {
@@ -22,8 +23,8 @@ class AppRouter {
     return MaterialPageRoute(
       settings: const RouteSettings(name: '/error'),
       builder: (_) => Scaffold(
-        appBar: AppBar(
-          title: const Text('Error'),
+        appBar: CustomAppBar.defaultAppBar(
+          title: 'Error',
         ),
       ),
     );
