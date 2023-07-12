@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_ecommerce_app/blocs/blocs.dart';
 import 'package:flutter_ecommerce_app/models/models.dart';
+import 'package:flutter_ecommerce_app/screens/menu/menu_screen.dart';
 import 'package:flutter_ecommerce_app/widgets/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,6 +18,34 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar.defaultAppBar(
+        leading: BlocBuilder<MenuBloc, MenuState>(
+          builder: (context, state) {
+            if (state is MenuLoadingState) {
+              return const SizedBox(
+                width: 5.0,
+                height: 5.0,
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            } else if (state is MenuLoadedState) {
+              return IconButton(
+                icon: const Icon(Icons.menu),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => MenuScreen(
+                        menuItem: state.menuItem,
+                      ),
+                    ),
+                  );
+                },
+              );
+            } else {
+              return Container();
+            }
+          },
+        ),
         title: 'Zero to Unicorn',
       ),
       bottomNavigationBar: const DefaultBottomAppBar(),

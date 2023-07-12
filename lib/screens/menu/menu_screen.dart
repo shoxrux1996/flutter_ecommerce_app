@@ -3,10 +3,11 @@ import 'package:flutter_ecommerce_app/models/models.dart';
 import 'package:flutter_ecommerce_app/widgets/widgets.dart';
 
 class MenuScreen extends StatefulWidget {
-  final String title;
+  final MenuItem menuItem;
+
   const MenuScreen({
     super.key,
-    this.title = 'Menu items',
+    required this.menuItem,
   });
 
   @override
@@ -18,19 +19,31 @@ class _MenuScreenState extends State<MenuScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar.defaultAppBar(
-        title: 'Menu',
+        title: widget.menuItem.name,
       ),
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: ListView.builder(
-          itemCount: MenuItem.items.length,
-          itemBuilder: (context, index) {
-            return MenuListItem(
-              item: MenuItem.items[index],
-            );
-          },
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.separated(
+                itemCount: widget.menuItem.children.length,
+                itemBuilder: (context, index) {
+                  return MenuListItem(
+                    item: widget.menuItem.children[index],
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return const Divider(
+                    thickness: 1,
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
+      bottomNavigationBar: const DefaultBottomAppBar(),
     );
   }
 }
@@ -45,23 +58,34 @@ class MenuListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            color: Colors.black.withOpacity(0.5),
+    return InkWell(
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: SizedBox(
+          height: 48,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(item.name),
+              if (item.children.isNotEmpty)
+                ...([
+                  IconButton(
+                    padding: const EdgeInsets.all(0.0),
+                    icon: const Icon(Icons.arrow_right_alt),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => MenuScreen(menuItem: item),
+                        ),
+                      );
+                    },
+                  ),
+                ]),
+            ],
           ),
         ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 6,
-          vertical: 10,
-        ),
-        child: Text(item.name),
-      ),
+      onTap: () {},
     );
   }
 }

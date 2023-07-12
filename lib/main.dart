@@ -26,6 +26,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => CartBloc()..add(LoadCartEvent()),
         ),
+        BlocProvider(
+          create: (_) => MenuBloc()..add(LoadMenuEvent()),
+        ),
       ],
       child: MaterialApp(
         title: 'Zero to Unicorn',

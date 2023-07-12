@@ -123,4 +123,10 @@ class MenuItem extends Equatable {
       children: [],
     ),
   ];
+
+  factory MenuItem.menu() => MenuItem(
+        id: 0,
+        name: 'Root',
+        children: MenuItem.items,
+      );
 }
