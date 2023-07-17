@@ -12,12 +12,21 @@ class SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: Align(
-        alignment: Alignment.topLeft,
-        child: Text(
-          title,
-          style: Theme.of(context).textTheme.displaySmall,
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: Theme.of(context).textTheme.displaySmall,
+          ),
+          IconButton(
+            iconSize: 32,
+            onPressed: () {
+              
+            },
+            icon: const Icon(Icons.more_horiz),
+          ),
+        ],
       ),
     );
   }

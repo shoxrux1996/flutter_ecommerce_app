@@ -63,21 +63,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   .map((category) => HeroCarouselCard(category: category))
                   .toList(),
             ),
-            const SectionTitle(title: 'RECOMMENDED'),
-            ProductCarousel(
-              products: Product.products
-                  .where(
-                    (product) => product.isRecommended,
-                  )
-                  .toList(),
-            ),
-            const SectionTitle(title: 'MOST POPULAR'),
-            ProductCarousel(
-              products: Product.products
-                  .where(
-                    (product) => product.isPopular,
-                  )
-                  .toList(),
+            BlocBuilder<SectionBloc, SectionState>(
+              builder: (context, state) {
+                if (state is SectionLoadingState) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is SectionLoadedState) {
+                  return Column(
+                    children: state.sections.map((section) {
+                      return Column(
+                        children: [
+                          SectionTitle(title: section.name),
+                          ProductCarousel(products: section.products),
+                        ],
+                      );
+                    }).toList(),
+                  );
+                } else {
+                  return const SizedBox();
+                }
+              },
             ),
           ],
         ),
