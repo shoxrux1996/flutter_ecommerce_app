@@ -48,7 +48,7 @@ class CartProductCard extends StatelessWidget {
                         ),
                         Text(
                           '\$${item.price}',
-                          style: Theme.of(context).textTheme.titleLarge,
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
                       ],
                     ),

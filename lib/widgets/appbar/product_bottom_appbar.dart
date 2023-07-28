@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/blocs/wishlist/wishlist_bloc.dart';
-import 'package:flutter_ecommerce_app/models/product_model.dart';
+import 'package:flutter_ecommerce_app/models/product/product_model.dart';
 import 'package:flutter_ecommerce_app/widgets/widgets.dart';
 
 class ProductBottomAppBar extends StatefulWidget {

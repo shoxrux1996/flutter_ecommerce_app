@@ -1,28 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app/models/models.dart';
+import 'package:flutter_ecommerce_app/widgets/widgets.dart';
 
 class HeroCarouselProductCard extends StatelessWidget {
-  final Product product;
+  final String url;
 
-  const HeroCarouselProductCard({super.key, required this.product});
+  const HeroCarouselProductCard({super.key, required this.url});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(
         horizontal: 5,
-        vertical: 20,
       ),
       child: ClipRRect(
         borderRadius: const BorderRadius.all(
           Radius.circular(5.0),
         ),
         child: Stack(
+          fit: StackFit.expand,
           children: [
-            Image.network(
-              product.imageUrl,
-              fit: BoxFit.cover,
-              width: 1000.0,
+            CustomNetworkImage(
+              url: url,
             ),
           ],
         ),

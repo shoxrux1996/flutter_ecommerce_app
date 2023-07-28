@@ -45,9 +45,7 @@ class WishlistScreen extends StatelessWidget {
                 return Center(
                   child: ProductCard(
                     product: state.wishlist.products[index],
-                    widthFactor: 1.1,
-                    leftPosition: 100,
-                    isWishlist: true,
+                    widthFactor: 0.9,
                   ),
                 );
               },

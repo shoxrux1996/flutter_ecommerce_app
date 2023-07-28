@@ -47,27 +47,3 @@ class CustomAppBar extends StatelessWidget implements PreferredSize {
   @override
   Widget get child => throw UnimplementedError();
 }
-
-// IconButton(
-//           onPressed: () {
-//             Navigator.of(context).push(
-//               MaterialPageRoute(
-//                 builder: (context) => const WishlistScreen(),
-//               ),
-//             );
-//           },
-//           icon: const Icon(Icons.favorite),
-//         )
-
-// IconButton(
-//         icon: const Icon(Icons.menu),
-//         onPressed: () {
-//           Navigator.of(context).push(
-//             MaterialPageRoute(
-//               builder: (context) => const MenuScreen(),
-//             ),
-//           );
-//         },
-//       ),
-
-

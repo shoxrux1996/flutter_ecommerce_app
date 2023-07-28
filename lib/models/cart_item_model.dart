@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_ecommerce_app/models/product_model.dart';
+import 'package:flutter_ecommerce_app/models/product/product_model.dart';
 
 class CartItem extends Equatable {
   final String id;
@@ -26,9 +26,9 @@ class CartItem extends Equatable {
       ];
 
   factory CartItem.fromProduct(Product product, int quantity) => CartItem(
-        id: product.id,
+        id: '${product.id}',
         name: product.name,
-        imageUrl: product.imageUrl,
+        imageUrl: product.mainImage,
         price: product.price,
         quantity: quantity,
       );

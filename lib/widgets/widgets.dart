@@ -9,3 +9,4 @@ export 'appbar/default_bottom_appbar.dart';
 export 'appbar/product_bottom_appbar.dart';
 export 'card/cart_product_card.dart';
 export 'title/custom_appbar_title.dart';
+export 'image/custom_network_image.dart';

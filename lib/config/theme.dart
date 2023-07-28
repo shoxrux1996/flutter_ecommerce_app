@@ -37,7 +37,7 @@ TextTheme textTheme() {
     ),
     titleLarge: TextStyle(
       color: Colors.black,
-      fontSize: 14,
+      fontSize: 16,
       fontWeight: FontWeight.normal,
     ),
     titleMedium: TextStyle(

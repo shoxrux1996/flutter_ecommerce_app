@@ -15,27 +15,25 @@ class Section extends Equatable {
   static List<Section> sections = [
     Section(
       'RECOMMENDED',
-      Product.products
-        ..where(
-          (product) => product.isRecommended,
-        ),
+      [...Product.products]
+        ..shuffle()
+        ..getRange(0, 2),
       true,
       const {'category_id': 1},
     ),
     Section(
       'MOST POPULAR',
-      Product.products
-        ..where(
-          (product) => product.isPopular,
-        ),
+      [...Product.products]
+        ..shuffle()
+        ..getRange(0, 2),
       true,
       const {'category_id': 2},
     ),
     Section(
       'HOT PRODUCTS',
-      Product.products
+      [...Product.products]
         ..shuffle()
-        ..getRange(0, 4),
+        ..getRange(0, 2),
       false,
       const {'category_id': 2},
     ),

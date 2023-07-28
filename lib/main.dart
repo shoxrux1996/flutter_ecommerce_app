@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Zero to Unicorn',
+        title: 'E-shop',
         theme: theme(),
         onGenerateRoute: AppRouter.onGenerateRoute,
         initialRoute: RootScreen.routeName,

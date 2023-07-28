@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
             }
           },
         ),
-        title: 'Zero to Unicorn',
+        title: 'E-shop',
       ),
       bottomNavigationBar: const DefaultBottomAppBar(),
       body: SingleChildScrollView(
@@ -74,7 +74,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: state.sections.map((section) {
                       return Column(
                         children: [
-                          SectionTitle(title: section.name),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 20.0,
+                            ),
+                            child: SectionTitle(title: section.name),
+                          ),
                           ProductCarousel(products: section.products),
                         ],
                       );

@@ -1,26 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_ecommerce_app/blocs/cart/cart_bloc.dart';
+import 'package:flutter_ecommerce_app/extensions/string/prepend_url.dart';
 import 'package:flutter_ecommerce_app/models/models.dart';
 import 'package:flutter_ecommerce_app/screens/screens.dart';
+import 'package:flutter_ecommerce_app/widgets/widgets.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
   final double widthFactor;
-  final double leftPosition;
-  final bool isWishlist;
 
   const ProductCard({
     super.key,
     required this.product,
-    this.widthFactor = 2.5,
-    this.leftPosition = 5,
-    this.isWishlist = false,
+    this.widthFactor = 0.4,
   });
 
   @override
   Widget build(BuildContext context) {
-    final double widthValue = MediaQuery.of(context).size.width / widthFactor;
+    final double widthValue = MediaQuery.of(context).size.width * widthFactor;
 
     return InkWell(
       onTap: () {
@@ -32,101 +28,60 @@ class ProductCard extends StatelessWidget {
           ),
         );
       },
-      child: Stack(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: widthValue,
-            height: 150,
-            color: Colors.red,
-            child: Image.network(
-              product.imageUrl,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Positioned(
-            top: 60,
-            left: leftPosition,
-            child: Container(
-              width: widthValue - 5 - leftPosition,
-              height: 80,
-              decoration: BoxDecoration(
-                color: Colors.black.withAlpha(50),
-              ),
-            ),
-          ),
-          Positioned(
-            top: 65,
-            left: leftPosition + 5,
-            child: Container(
-              width: widthValue - 15 - leftPosition,
-              height: 70,
-              decoration: const BoxDecoration(
-                color: Colors.black,
-              ),
+          Expanded(
+            child: SizedBox(
+              width: widthValue,
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            product.name,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineSmall!
-                                .copyWith(color: Colors.white),
-                          ),
-                          Text(
-                            '\$${product.price}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineSmall!
-                                .copyWith(color: Colors.white),
-                          ),
-                        ],
+                  padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                  child: CustomNetworkImage(
+                    url: product.mainImage.toUrl(),
+                  )),
+            ),
+          ),
+          SizedBox(
+            width: widthValue,
+            height: 70,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    product.name,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium!
+                        .copyWith(height: 1),
+                    maxLines: 2,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      if (product.minPrice != product.maxPrice)
+                        Text(
+                          'From ',
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                      Text(
+                        product.minPrice != null && product.minPrice! > 0
+                            ? '\$${product.minPrice}'
+                            : '\$${product.price}',
+                        style: Theme.of(context).textTheme.headlineSmall,
                       ),
-                    ),
-                    Expanded(
-                      child: BlocBuilder<CartBloc, CartState>(
-                        builder: (context, state) {
-                          if (state is CartLoadedState) {
-                            return IconButton(
-                              icon: const Icon(Icons.add_circle),
-                              onPressed: () {
-                                context.read<CartBloc>().add(
-                                      AddProductToCartEvent(
-                                        product: product,
-                                        quantity: 1,
-                                      ),
-                                    );
-                              },
-                              color: Colors.white,
-                            );
-                          } else {
-                            return IconButton(
-                              icon: const Icon(Icons.add_circle),
-                              onPressed: () {},
-                              color: Colors.white,
-                            );
-                          }
-                        },
-                      ),
-                    ),
-                    isWishlist
-                        ? Expanded(
-                            child: IconButton(
-                              icon: const Icon(Icons.delete),
-                              onPressed: () {},
-                              color: Colors.white,
-                            ),
-                          )
-                        : const SizedBox(),
-                  ],
-                ),
+                      if (product.uomCode?.isNotEmpty ?? false)
+                        Text(
+                          ' / ${product.uomCode}',
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),

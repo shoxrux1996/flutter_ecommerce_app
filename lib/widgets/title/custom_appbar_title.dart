@@ -18,6 +18,7 @@ class CustomAppBarTitle extends StatelessWidget {
       ),
       child: Text(
         title,
+        overflow: TextOverflow.ellipsis,
         style: Theme.of(context).textTheme.displayMedium!.copyWith(
               color: Colors.white,
             ),
