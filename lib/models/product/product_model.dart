@@ -13,7 +13,7 @@ class Product extends Equatable {
   final String? uomCode;
   final List<Product> chidlren;
   final List<ProductImage> images;
-  final List<ProductOption> tags;
+  final List<ProductOption> options;
 
   const Product({
     required this.id,
@@ -27,13 +27,18 @@ class Product extends Equatable {
     this.uomCode,
     this.chidlren = const [],
     this.images = const [],
-    this.tags = const [],
+    this.options = const [],
   });
 
   List<String> get allImages => images.map((e) => e.src).toList();
 
   @override
   List<Object?> get props => [id];
+
+  @override
+  String toString() {
+    return 'Product #id:$id';
+  }
 
   static List<Product> products = [
     const Product(
@@ -59,20 +64,21 @@ class Product extends Equatable {
           uomCode: 'DZ',
           chidlren: [],
           images: [],
-          tags: [
+          options: [
             ProductOption(
-              2,
-              null,
-              'Dashing color Bliss',
-              'Dashing color Bliss',
-              'Color',
+              id: 2,
+              img: null,
+              name: 'Dashing color Bliss',
+              originalName: 'Dashing color Bliss',
+              type: 'Color',
             ),
             ProductOption(
-              42,
-              null,
-              'Non Directional Uph Fabric Giselle Hunter (apply RR)',
-              'Non Directional Uph Fabric Giselle Hunter (apply RR)',
-              'Fabric',
+              id: 42,
+              img: null,
+              name: 'Non Directional Uph Fabric Giselle Hunter (apply RR)',
+              originalName:
+                  'Non Directional Uph Fabric Giselle Hunter (apply RR)',
+              type: 'Fabric',
             ),
           ],
         ),
@@ -101,20 +107,21 @@ class Product extends Equatable {
               '/storage/products/July2023/n5GCWHcF8N587enb8s0Q.JPG',
             ),
           ],
-          tags: [
+          options: [
             ProductOption(
-              1,
-              null,
-              'Dashing color Balance',
-              'Dashing color Balance',
-              'Color',
+              id: 1,
+              img: null,
+              name: 'Dashing color Balance',
+              originalName: 'Dashing color Balance',
+              type: 'Color',
             ),
             ProductOption(
-              41,
-              null,
-              'Non Directional Uph Fabric Giselle Dove (apply RR)',
-              'Non Directional Uph Fabric Giselle Dove (apply RR)',
-              'Fabric',
+              id: 41,
+              img: null,
+              name: 'Non Directional Uph Fabric Giselle Dove (apply RR)',
+              originalName:
+                  'Non Directional Uph Fabric Giselle Dove (apply RR)',
+              type: 'Fabric',
             ),
           ],
         ),
@@ -133,20 +140,20 @@ class Product extends Equatable {
           '/storage/products/July2023/n5GCWHcF8N587enb8s0Q.JPG',
         ),
       ],
-      tags: [
+      options: [
         ProductOption(
-          1,
-          null,
-          'Dashing color Balance',
-          'Dashing color Balance',
-          'Color',
+          id: 1,
+          img: null,
+          name: 'Dashing color Balance',
+          originalName: 'Dashing color Balance',
+          type: 'Color',
         ),
         ProductOption(
-          41,
-          null,
-          'Non Directional Uph Fabric Giselle Dove (apply RR)',
-          'Non Directional Uph Fabric Giselle Dove (apply RR)',
-          'Fabric',
+          id: 41,
+          img: null,
+          name: 'Non Directional Uph Fabric Giselle Dove (apply RR)',
+          originalName: 'Non Directional Uph Fabric Giselle Dove (apply RR)',
+          type: 'Fabric',
         ),
       ],
     ),
@@ -162,20 +169,20 @@ class Product extends Equatable {
       uomCode: 'DZ',
       chidlren: [],
       images: [],
-      tags: [
+      options: [
         ProductOption(
-          2,
-          null,
-          'Dashing color Bliss',
-          'Dashing color Bliss',
-          'Color',
+          id: 2,
+          img: null,
+          name: 'Dashing color Bliss',
+          originalName: 'Dashing color Bliss',
+          type: 'Color',
         ),
         ProductOption(
-          42,
-          null,
-          'Non Directional Uph Fabric Giselle Hunter (apply RR)',
-          'Non Directional Uph Fabric Giselle Hunter (apply RR)',
-          'Fabric',
+          id: 42,
+          img: null,
+          name: 'Non Directional Uph Fabric Giselle Hunter (apply RR)',
+          originalName: 'Non Directional Uph Fabric Giselle Hunter (apply RR)',
+          type: 'Fabric',
         ),
       ],
     ),
@@ -184,7 +191,7 @@ class Product extends Equatable {
       slug: 'val-cale-white-queen-fitted-sheet-60x80x12',
       name: 'Val Cale: White Queen Fitted Sheet, 60x80x12',
       mainImage: "/storage/products/January2023/Q0TPCzKRK3oj6AzFk4Wc.JPG",
-      price: 114.200000,
+      price: 80.200000,
       originalPrice: 0,
       minPrice: 0,
       maxPrice: 0,
@@ -204,20 +211,20 @@ class Product extends Equatable {
           '/storage/products/July2023/n5GCWHcF8N587enb8s0Q.JPG',
         ),
       ],
-      tags: [
+      options: [
         ProductOption(
-          1,
-          null,
-          'Dashing color Balance',
-          'Dashing color Balance',
-          'Color',
+          id: 1,
+          img: null,
+          name: 'Dashing color Balance',
+          originalName: 'Dashing color Balance',
+          type: 'Color',
         ),
         ProductOption(
-          41,
-          null,
-          'Non Directional Uph Fabric Giselle Dove (apply RR)',
-          'Non Directional Uph Fabric Giselle Dove (apply RR)',
-          'Fabric',
+          id: 41,
+          img: null,
+          name: 'Non Directional Uph Fabric Giselle Dove (apply RR)',
+          originalName: 'Non Directional Uph Fabric Giselle Dove (apply RR)',
+          type: 'Fabric',
         ),
       ],
     ),
@@ -233,7 +240,7 @@ class Product extends Equatable {
       uomCode: 'EA',
       chidlren: [],
       images: [],
-      tags: [],
+      options: [],
     ),
   ];
 }

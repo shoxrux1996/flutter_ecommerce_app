@@ -1,24 +1,25 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app/extensions/string/prepend_url.dart';
-import 'package:flutter_ecommerce_app/models/product/product_model.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_ecommerce_app/blocs/product/product_bloc.dart';
+import 'package:flutter_ecommerce_app/models/models.dart';
 import 'package:flutter_ecommerce_app/widgets/widgets.dart';
 
 class ProductScreen extends StatefulWidget {
-  final Product product;
+  final int productId;
 
   const ProductScreen({
     super.key,
-    required this.product,
+    required this.productId,
   });
 
   static const String routeName = '/product';
 
-  static Route route({required Product product}) {
+  static Route route({required int productId}) {
     return MaterialPageRoute(
       settings: const RouteSettings(name: routeName),
       builder: (_) => ProductScreen(
-        product: product,
+        productId: productId,
       ),
     );
   }
@@ -28,201 +29,135 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
+  Map<String, List<ProductOption>> variants = {};
+  Map<String, String> selectedOptions = {};
+
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      context.read<ProductBloc>().add(
+            LoadProductEvent(
+              productId: widget.productId,
+            ),
+          );
+    });
+  }
+
+  Product get product =>
+      (context.read<ProductBloc>().state as ProductLoadedState).product;
+
+  List<Product> get items {
+    return [...product.chidlren, product];
+  }
+
+  Product get selectedProduct {
+    if (selectedOptions.isEmpty) {
+      return items.first;
+    }
+
+    var filteredItems = items.firstWhere(
+      (element) {
+        var filteredOptions = element.options.where((element) {
+          return selectedOptions[element.type] == element.name;
+        });
+
+        return filteredOptions.length == selectedOptions.length;
+      },
+      orElse: () => items.first,
+    );
+
+    return filteredItems;
+  }
+
+  bool isOptionDisabled(ProductOption option) {
+    if (selectedOptions.isEmpty || selectedOptions.containsKey(option.type)) {
+      return false;
+    }
+    var combinedSelectedOptions = {
+      option.type: option.name,
+      ...selectedOptions
+    };
+
+    return items.where(
+      (element) {
+        var filteredOptions = element.options.where((element) {
+          return combinedSelectedOptions[element.type] == element.name;
+        });
+
+        return filteredOptions.length == combinedSelectedOptions.length;
+      },
+    ).isEmpty;
+  }
+
+  void updateSelectedOptions(String type, String title) {
+    var newSelectedOptions = Map.of(selectedOptions);
+
+    if (newSelectedOptions[type] == title) {
+      newSelectedOptions.remove(type);
+    } else {
+      newSelectedOptions[type] = title;
+    }
+
+    setState(() {
+      selectedOptions = newSelectedOptions;
+    });
+  }
+
+  void updateOptions(String type, String title) {
+    updateSelectedOptions(type, title);
+
+    var newVariants = Map.of(variants).map(
+      (String key, List<ProductOption> value) => MapEntry(
+        key,
+        List.of(value)
+            .map(
+              (e) => e.copyWith(
+                selected: selectedOptions[e.type] == e.name,
+                disabled: isOptionDisabled(e),
+              ),
+            )
+            .toList(),
+      ),
+    );
+
+    setState(() {
+      variants = newVariants;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar.defaultAppBar(
-        title: 'Product',
-      ),
-      bottomNavigationBar: const DefaultBottomAppBar(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              child: CarouselSlider(
-                options: CarouselOptions(
-                  aspectRatio: 1.5,
-                  viewportFraction: 0.9,
-                  enlargeCenterPage: true,
-                  enlargeStrategy: CenterPageEnlargeStrategy.height,
-                ),
-                items: widget.product.allImages
-                    .map((e) => HeroCarouselProductCard(url: e.toUrl()))
-                    .toList(),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Container(
-                padding: const EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.grey,
-                    width: 5,
-                  ),
-                  color: Colors.black,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        widget.product.name,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineMedium!
-                            .copyWith(
-                              color: Colors.white,
-                            ),
-                        maxLines: 3,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20.0,
-                vertical: 20.0,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Flexible(
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Price: ',
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
-                          Text(
-                            '\$${widget.product.price}',
-                            style: Theme.of(context).textTheme.displaySmall,
-                          ),
-                          if (widget.product.uomCode?.isNotEmpty ?? false) ...[
-                            Text(
-                              '/',
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                            Text(
-                              '${widget.product.uomCode}',
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                          ],
-                        ],
-                      ),
-                    ),
-                  ),
-                  Flexible(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 15.0,
-                        ),
-                        child: Text(
-                          'ADD TO CART',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall!
-                              .copyWith(
-                                color: Colors.white,
-                              ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Column(
-                children: [
-                  const SectionTitle(title: 'Options'),
-                  const Divider(),
-                  SizedBox(
-                    height: 30,
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: SectionTitle(
-                            title: 'Color',
-                            textStyle:
-                                Theme.of(context).textTheme.headlineSmall,
-                          ),
-                        ),
-                        Expanded(
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 5,
-                            itemBuilder: (context, index) {
-                              return const Padding(
-                                padding: EdgeInsets.only(left: 5),
-                                child: ProductVariantOptionButton(
-                                  title: 'Dashing color Balance',
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Divider(),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-      // HeroCarouselProductCard(product: product),
+    return BlocConsumer<ProductBloc, ProductState>(
+      listener: (context, state) {
+        if (state is ProductLoadedState) {
+          setState(() {
+            variants = state.variants;
+          });
+        }
+      },
+      builder: (context, state) {
+        if (state is ProductLoadingState) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is ProductLoadedState) {
+          return ProductView(
+            product: state.product,
+            selectedProduct: selectedProduct,
+            variants: variants,
+            updateOptions: updateOptions,
+          );
+        } else {
+          return const Center(
+            child: Text('something went wrong'),
+          );
+        }
+      },
     );
   }
 }
 
-class ProductVariantOptionButton extends StatelessWidget {
-  final String title;
-
-  const ProductVariantOptionButton({
-    super.key,
-    required this.title,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.cyan,
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Center(
-                child: Text(title),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 // Padding(
 //   padding: const EdgeInsets.symmetric(horizontal: 20.0),

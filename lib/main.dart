@@ -32,6 +32,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => SectionBloc()..add(LoadSectionEvent()),
         ),
+        BlocProvider(
+          create: (_) => ProductBloc(),
+        ),
       ],
       child: MaterialApp(
         title: 'E-shop',
