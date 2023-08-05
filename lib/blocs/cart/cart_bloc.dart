@@ -33,12 +33,17 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   void _addProductToCart(
     AddProductToCartEvent event,
     Emitter<CartState> emit,
-  ) {
+  ) async {
     final state = this.state;
+
     if (state is CartLoadedState) {
       try {
+        emit(CartLoadingState());
+
+        await Future.delayed(const Duration(seconds: 3));
+
         final int itemIndex = state.cart.items.indexWhere(
-          (element) => element.id == event.product.id,
+          (element) => element.id == '${event.product.id}',
         );
 
         List<CartItem> items = [];
@@ -73,10 +78,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   void _updateCartItem(
     UpdateCartItemEvent event,
     Emitter<CartState> emit,
-  ) {
+  ) async {
     final state = this.state;
     if (state is CartLoadedState) {
       try {
+        emit(CartLoadingState());
+
         final int itemIndex = state.cart.items.indexWhere(
           (element) => element.id == event.item.id,
         );

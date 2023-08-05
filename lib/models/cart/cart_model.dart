@@ -6,6 +6,11 @@ class Cart extends Equatable {
 
   const Cart({this.items = const <CartItem>[]});
 
+  int get totalItemsCount => items.fold(
+        0,
+        (previousValue, element) => previousValue + element.quantity,
+      );
+
   double get subtotal => items.fold(
         0,
         (previousValue, element) =>

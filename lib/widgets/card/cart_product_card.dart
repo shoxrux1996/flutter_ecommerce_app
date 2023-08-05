@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/blocs/cart/cart_bloc.dart';
+import 'package:flutter_ecommerce_app/extensions/string/prepend_url.dart';
 import 'package:flutter_ecommerce_app/models/models.dart';
 
 class CartProductCard extends StatelessWidget {
@@ -29,7 +30,7 @@ class CartProductCard extends StatelessWidget {
               child: Row(
                 children: [
                   Image.network(
-                    item.imageUrl,
+                    item.imageUrl.toUrl(),
                     width: 100,
                     height: 80,
                     fit: BoxFit.cover,

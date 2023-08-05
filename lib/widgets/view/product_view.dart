@@ -9,6 +9,7 @@ class ProductView extends StatelessWidget {
   final Product selectedProduct;
   final Map<String, List<ProductOption>> variants;
   final Function(String, String) updateOptions;
+  final Function()? addToCart;
 
   const ProductView({
     super.key,
@@ -16,6 +17,7 @@ class ProductView extends StatelessWidget {
     required this.selectedProduct,
     required this.variants,
     required this.updateOptions,
+    required this.addToCart,
   });
 
   @override
@@ -110,13 +112,13 @@ class ProductView extends StatelessWidget {
                   ),
                   Flexible(
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: addToCart,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                          vertical: 15.0,
+                          vertical: 10.0,
                         ),
                         child: Text(
                           'ADD TO CART',

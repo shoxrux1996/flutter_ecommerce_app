@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_ecommerce_app/blocs/blocs.dart';
 import 'package:flutter_ecommerce_app/blocs/product/product_bloc.dart';
 import 'package:flutter_ecommerce_app/models/models.dart';
 import 'package:flutter_ecommerce_app/widgets/widgets.dart';
@@ -71,13 +72,12 @@ class _ProductScreenState extends State<ProductScreen> {
   }
 
   bool isOptionDisabled(ProductOption option) {
-    if (selectedOptions.isEmpty || selectedOptions.containsKey(option.type)) {
+    if (selectedOptions.isEmpty) {
       return false;
     }
-    var combinedSelectedOptions = {
-      option.type: option.name,
-      ...selectedOptions
-    };
+    var combinedSelectedOptions = {...selectedOptions};
+
+    combinedSelectedOptions[option.type] = option.name;
 
     return items.where(
       (element) {
@@ -126,6 +126,17 @@ class _ProductScreenState extends State<ProductScreen> {
     });
   }
 
+  void addToCart() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Product added to cart!'),
+      ),
+    );
+    context.read<CartBloc>().add(
+          AddProductToCartEvent(product: selectedProduct, quantity: 1),
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProductBloc, ProductState>(
@@ -136,17 +147,24 @@ class _ProductScreenState extends State<ProductScreen> {
           });
         }
       },
-      builder: (context, state) {
-        if (state is ProductLoadingState) {
+      builder: (context, productState) {
+        if (productState is ProductLoadingState) {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (state is ProductLoadedState) {
-          return ProductView(
-            product: state.product,
-            selectedProduct: selectedProduct,
-            variants: variants,
-            updateOptions: updateOptions,
+        } else if (productState is ProductLoadedState) {
+          return BlocBuilder<CartBloc, CartState>(
+            builder: (context, cartState) {
+              return ProductView(
+                product: productState.product,
+                selectedProduct: selectedProduct,
+                variants: variants,
+                updateOptions: updateOptions,
+                addToCart: cartState is CartLoadedState
+                    ? addToCart
+                    : null,
+              );
+            },
           );
         } else {
           return const Center(
