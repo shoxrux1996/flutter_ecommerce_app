@@ -43,7 +43,7 @@ class _MenuScreenState extends State<MenuScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: const DefaultBottomAppBar(),
+      bottomNavigationBar: CustomBottomAppBar.defaultBottomAppBar(),
     );
   }
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/blocs/blocs.dart';
-import 'package:flutter_ecommerce_app/blocs/product/product_bloc.dart';
 import 'package:flutter_ecommerce_app/models/models.dart';
 import 'package:flutter_ecommerce_app/widgets/widgets.dart';
 
@@ -160,9 +159,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 selectedProduct: selectedProduct,
                 variants: variants,
                 updateOptions: updateOptions,
-                addToCart: cartState is CartLoadedState
-                    ? addToCart
-                    : null,
+                addToCart: cartState is CartLoadedState ? addToCart : null,
               );
             },
           );

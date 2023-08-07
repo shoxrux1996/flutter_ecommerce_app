@@ -21,7 +21,7 @@ class WishlistScreen extends StatelessWidget {
       appBar: CustomAppBar.defaultAppBar(
         title: 'Wishlist',
       ),
-      bottomNavigationBar: const DefaultBottomAppBar(),
+      bottomNavigationBar: CustomBottomAppBar.defaultBottomAppBar(),
       body: BlocBuilder<WishlistBloc, WishlistState>(
         builder: (context, state) {
           if (state is WishlistLoadingState) {

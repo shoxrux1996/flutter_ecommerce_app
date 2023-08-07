@@ -1,54 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/blocs/blocs.dart';
-import 'package:flutter_ecommerce_app/widgets/appbar/custom_bottom_appbar.dart';
 
-class DefaultBottomAppBar extends StatelessWidget {
-  const DefaultBottomAppBar({
-    super.key,
-  });
+
+class HomeBottomAppBar extends StatelessWidget {
+  const HomeBottomAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return CustomBottomAppBar(
-      widget: BlocBuilder<NavbarCubit, NavbarState>(
-        builder: (context, state) {
-          var firstActive = state.index == 0;
-          var secondActive = state.index == 1;
-          var thirdActive = state.index == 2;
-          return BottomNavigationBar(
-              backgroundColor: Colors.black,
-              currentIndex: 0,
-              showSelectedLabels: false,
-              showUnselectedLabels: false,
-              items: [
-                BottomNavigationBarItem(
-                  icon: HomeNavbarItem(
-                    active: firstActive,
-                    iconData: Icons.home,
-                  ),
-                  label: 'Home',
+    return BlocBuilder<NavbarCubit, NavbarState>(
+      builder: (context, state) {
+        var firstActive = state.index == 0;
+        var secondActive = state.index == 1;
+        var thirdActive = state.index == 2;
+        return BottomNavigationBar(
+            backgroundColor: Colors.black,
+            currentIndex: 0,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            items: [
+              BottomNavigationBarItem(
+                icon: HomeNavbarItem(
+                  active: firstActive,
+                  iconData: Icons.home,
                 ),
-                BottomNavigationBarItem(
-                  icon: CartNavbarItem(
-                    active: secondActive,
-                    iconData: Icons.shopping_cart,
-                  ),
-                  label: 'Cart',
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: CartNavbarItem(
+                  active: secondActive,
+                  iconData: Icons.shopping_cart,
                 ),
-                BottomNavigationBarItem(
-                  icon: HomeNavbarItem(
-                    active: thirdActive,
-                    iconData: Icons.person,
-                  ),
-                  label: 'Profile',
+                label: 'Cart',
+              ),
+              BottomNavigationBarItem(
+                icon: HomeNavbarItem(
+                  active: thirdActive,
+                  iconData: Icons.person,
                 ),
-              ],
-              onTap: (index) {
-                context.read<NavbarCubit>().setTab(index);
-              });
-        },
-      ),
+                label: 'Profile',
+              ),
+            ],
+            onTap: (index) {
+              context.read<NavbarCubit>().setTab(index);
+            });
+      },
     );
   }
 }

@@ -26,7 +26,7 @@ class ProductView extends StatelessWidget {
       appBar: CustomAppBar.defaultAppBar(
         title: 'Product',
       ),
-      bottomNavigationBar: const DefaultBottomAppBar(),
+      bottomNavigationBar: CustomBottomAppBar.defaultBottomAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [

@@ -3,11 +3,13 @@ import 'package:flutter_ecommerce_app/models/models.dart';
 import 'package:flutter_ecommerce_app/widgets/widgets.dart';
 
 class CartView extends StatelessWidget {
+  final Function(BuildContext) goToCheckout;
   final Cart cart;
 
   const CartView({
     super.key,
     required this.cart,
+    required this.goToCheckout,
   });
 
   @override
@@ -109,7 +111,7 @@ class CartView extends StatelessWidget {
                       height: 20,
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () => goToCheckout(context),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
                       ),
@@ -118,7 +120,7 @@ class CartView extends StatelessWidget {
                           vertical: 10.0,
                         ),
                         child: Text(
-                          'GO TO CHECHKOUT',
+                          'GO TO CHECKOUT',
                           style: Theme.of(context)
                               .textTheme
                               .displaySmall!

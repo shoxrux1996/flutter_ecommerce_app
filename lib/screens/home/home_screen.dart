@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         title: 'E-shop',
       ),
-      bottomNavigationBar: const DefaultBottomAppBar(),
+      bottomNavigationBar: CustomBottomAppBar.defaultBottomAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
