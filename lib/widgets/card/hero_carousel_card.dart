@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/extensions/extensions.dart';
 import 'package:flutter_ecommerce_app/models/models.dart';
 import 'package:flutter_ecommerce_app/screens/screens.dart';
+import 'package:flutter_ecommerce_app/widgets/widgets.dart';
 
 class HeroCarouselCard extends StatelessWidget {
   final Category category;
@@ -28,9 +30,8 @@ class HeroCarouselCard extends StatelessWidget {
           ),
           child: Stack(
             children: <Widget>[
-              Image.network(
-                category.imageUrl,
-                fit: BoxFit.cover,
+              CustomNetworkImage(
+                url: category.imageUrl.toUrl(),
                 width: 1000.0,
               ),
               Positioned(

@@ -3,10 +3,14 @@ import 'package:flutter_ecommerce_app/widgets/widgets.dart';
 
 class CustomBottomAppBar extends StatelessWidget {
   final Widget widget;
+  final Color color;
+  final double height;
 
   const CustomBottomAppBar({
     super.key,
     required this.widget,
+    this.color = Colors.black,
+    this.height = 70.0,
   });
 
   factory CustomBottomAppBar.defaultBottomAppBar() {
@@ -15,12 +19,22 @@ class CustomBottomAppBar extends StatelessWidget {
     );
   }
 
+  factory CustomBottomAppBar.checkoutBottomAppBar({required double total}) {
+    return CustomBottomAppBar(
+      color: Colors.white,
+      height: 100,
+      widget: CheckoutBottomAppBar(
+        total: total,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      color: Colors.black,
+      color: color,
       child: SizedBox(
-        height: 70,
+        height: height,
         child: widget,
       ),
     );

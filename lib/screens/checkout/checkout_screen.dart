@@ -18,31 +18,34 @@ class CheckoutScreen extends StatefulWidget {
 }
 
 class _CheckoutScreenState extends State<CheckoutScreen> {
+  double get total => 1000;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar.defaultAppBar(title: 'Checkout'),
-      bottomNavigationBar: CustomBottomAppBar(
-        widget: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-                shape: const RoundedRectangleBorder(),
+      bottomNavigationBar:
+          CustomBottomAppBar.checkoutBottomAppBar(total: total),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'CUSTOMER INFORMATION',
+                style: Theme.of(context).textTheme.displaySmall,
               ),
-              child: Text(
-                'ORDER',
-                style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                      color: Colors.black,
-                    ),
+              const CustomTextFormField(
+                title: 'Email',
               ),
-            ),
-          ],
+              const CustomTextFormField(
+                title: 'Full Name',
+              ),
+            ],
+          ),
         ),
       ),
-      body: Container(),
     );
   }
 }

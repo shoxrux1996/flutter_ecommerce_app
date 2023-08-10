@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/blocs/cart/cart_bloc.dart';
 import 'package:flutter_ecommerce_app/extensions/string/prepend_url.dart';
 import 'package:flutter_ecommerce_app/models/models.dart';
+import 'package:flutter_ecommerce_app/widgets/widgets.dart';
 
 class CartProductCard extends StatelessWidget {
   final CartItem item;
@@ -29,11 +30,14 @@ class CartProductCard extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 16.0, top: 16.0),
               child: Row(
                 children: [
-                  Image.network(
-                    item.imageUrl.toUrl(),
+                  SizedBox(
                     width: 100,
                     height: 80,
-                    fit: BoxFit.cover,
+                    child: CustomNetworkImage(
+                      url: item.imageUrl.toUrl(),
+                      width: 100,
+                      height: 80,
+                    ),
                   ),
                   const SizedBox(
                     width: 10,
