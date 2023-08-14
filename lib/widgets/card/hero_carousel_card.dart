@@ -15,7 +15,7 @@ class HeroCarouselCard extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => CatalogScreen(category: category),
+            builder: (context) => CatalogScreen(title: category.name),
           ),
         );
       },

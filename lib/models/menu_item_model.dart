@@ -17,109 +17,85 @@ class MenuItem extends Equatable {
   static List<MenuItem> items = const [
     MenuItem(
       id: 1,
-      name: 'Soft Drinks',
+      name: 'ARTWORK & MIRRORS',
       children: [
         MenuItem(
           id: 10,
-          name: 'Water',
-          children: [],
-        ),
-        MenuItem(
-          id: 10,
-          name: 'Spirits',
-          children: [],
-        ),
-        MenuItem(
-          id: 10,
-          name: 'Carbonated drinks',
-          children: [],
-        ),
-        MenuItem(
-          id: 10,
-          name: 'Juice and plant drinks.',
-          children: [],
-        ),
-        MenuItem(
-          id: 10,
-          name: 'Wine',
+          name: 'Artwork - Standard Frames',
           children: [],
         ),
       ],
     ),
     MenuItem(
       id: 2,
-      name: 'Smoothies',
+      name: 'BED COVERINGS',
       children: [
         MenuItem(
           id: 11,
-          name: 'Water',
-          children: [],
-        ),
-        MenuItem(
-          id: 11,
-          name: 'Spirits',
-          children: [],
-        ),
-        MenuItem(
-          id: 11,
-          name: 'Carbonated drinks',
-          children: [],
-        ),
-        MenuItem(
-          id: 11,
-          name: 'Juice and plant drinks.',
-          children: [],
-        ),
-        MenuItem(
-          id: 11,
-          name: 'Wine',
-          children: [],
-        ),
-        MenuItem(
-          id: 11,
-          name: 'Cider',
-          children: [],
-        ),
-        MenuItem(
-          id: 11,
-          name: 'Beer',
+          name: 'Pre-made Bedspreads',
           children: [],
         ),
       ],
     ),
     MenuItem(
       id: 3,
-      name: 'Water',
+      name: 'BEDS & FRAMES',
       children: [],
     ),
     MenuItem(
       id: 4,
-      name: 'Spirits',
-      children: [],
+      name: 'EQUIPMENT',
+      children: [
+        MenuItem(
+          id: 12,
+          name: 'PTAC Units & Controllers',
+          children: [],
+        ),
+        MenuItem(
+          id: 13,
+          name: 'TVs-DVDs- Accessories',
+          children: [],
+        ),
+        MenuItem(
+          id: 14,
+          name: 'Refrigerators',
+          children: [],
+        ),
+        MenuItem(
+          id: 15,
+          name: 'Microwaves',
+          children: [],
+        ),
+        MenuItem(
+          id: 16,
+          name: 'Alarm Clocks',
+          children: [],
+        ),
+      ],
     ),
     MenuItem(
       id: 5,
-      name: 'Carbonated drinks',
+      name: 'FLOOR COVERINGS',
       children: [],
     ),
     MenuItem(
       id: 6,
-      name: 'Juice and plant drinks.',
+      name: 'FURNITURE',
       children: [],
     ),
     MenuItem(
       id: 7,
-      name: 'Wine',
+      name: 'LIGHTING',
       children: [],
     ),
     MenuItem(
       id: 8,
-      name: 'Cider',
+      name: 'PUBLIC AREAS',
       children: [],
     ),
     MenuItem(
       id: 9,
-      name: 'Beer',
+      name: 'SEATING',
       children: [],
     ),
   ];

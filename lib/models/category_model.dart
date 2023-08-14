@@ -14,19 +14,19 @@ class Category extends Equatable {
 
   static List<Category> categories = [
     const Category(
-      name: 'Soft Drinks',
+      name: 'Bed Coverings',
       imageUrl:
-          'https://images.unsplash.com/photo-1534057308991-b9b3a578f1b1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80', //https://unsplash.com/photos/5lZhD2qQ2SE
+          '/storage/products/catalog/13_Linens/ValCal180Sheets.jpg', //https://unsplash.com/photos/5lZhD2qQ2SE
     ),
     const Category(
-      name: 'Smoothies',
+      name: 'Beds & frames',
       imageUrl:
-          'https://images.unsplash.com/photo-1502741224143-90386d7f8c82?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80', //https://unsplash.com/photos/m741tj4Cz7M
+          '/storage/products/January2023/Q0TPCzKRK3oj6AzFk4Wc.JPG', //https://unsplash.com/photos/m741tj4Cz7M
     ),
     const Category(
-      name: 'Water',
+      name: 'Equipment',
       imageUrl:
-          'https://images.unsplash.com/photo-1559839914-17aae19cec71?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80', //https://unsplash.com/photos/7Zlds3gm7NU
+          '/storage/products/July2023/n5GCWHcF8N587enb8s0Q.JPG', //https://unsplash.com/photos/7Zlds3gm7NU
     ),
   ];
 }

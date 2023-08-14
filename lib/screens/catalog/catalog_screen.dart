@@ -5,16 +5,18 @@ import 'package:flutter_ecommerce_app/widgets/widgets.dart';
 class CatalogScreen extends StatelessWidget {
   static const String routeName = '/catalog';
 
-  static Route route({required Category category}) {
+  static Route route({String? title}) {
     return MaterialPageRoute(
       settings: const RouteSettings(name: routeName),
-      builder: (_) => CatalogScreen(category: category),
+      builder: (_) => CatalogScreen(
+        title: title,
+      ),
     );
   }
 
-  final Category category;
+  final String? title;
 
-  const CatalogScreen({super.key, required this.category});
+  const CatalogScreen({super.key, this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class CatalogScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: CustomAppBar.defaultAppBar(
-        title: category.name,
+        title: title ?? '',
       ),
       bottomNavigationBar: CustomBottomAppBar.defaultBottomAppBar(),
       body: GridView.builder(

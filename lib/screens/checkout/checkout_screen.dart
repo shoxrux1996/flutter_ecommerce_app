@@ -23,8 +23,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar.defaultAppBar(title: 'Checkout'),
-      bottomNavigationBar:
-          CustomBottomAppBar.checkoutBottomAppBar(total: total),
+      bottomNavigationBar: CustomBottomAppBar.checkoutBottomAppBar(
+        total: total,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -33,15 +34,42 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'CUSTOMER INFORMATION',
+                'Personal information',
                 style: Theme.of(context).textTheme.displaySmall,
               ),
-              const CustomTextFormField(
-                title: 'Email',
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: Column(
+                  children: [
+                    CustomTextFormField(
+                      title: 'Full Name',
+                      hintText: 'Enter your full name',
+                    ),
+                    CustomTextFormField(
+                      title: 'Business Name',
+                      hintText: 'Enter your business name',
+                    ),
+                    CustomTextFormField(
+                      title: 'Address',
+                      hintText: '1234 Main St',
+                    ),
+                    CustomTextFormField(
+                      title: 'Address 2',
+                      hintText: 'Appartment or suite',
+                    ),
+                    CustomTextFormField(
+                      title: 'City',
+                    ),
+                    CustomTextFormField(
+                      title: 'State',
+                    ),
+                    CustomTextFormField(
+                      title: 'Zip',
+                    ),
+                  ],
+                ),
               ),
-              const CustomTextFormField(
-                title: 'Full Name',
-              ),
+              const Divider(thickness: 2),
             ],
           ),
         ),

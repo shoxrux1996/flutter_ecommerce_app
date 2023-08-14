@@ -40,7 +40,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       try {
         emit(CartLoadingState());
 
-        await Future.delayed(const Duration(seconds: 3));
+        await Future.delayed(const Duration(seconds: 1));
 
         final int itemIndex = state.cart.items.indexWhere(
           (element) => element.id == '${event.product.id}',

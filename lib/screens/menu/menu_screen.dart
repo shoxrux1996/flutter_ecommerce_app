@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/models/models.dart';
+import 'package:flutter_ecommerce_app/screens/catalog/catalog_screen.dart';
 import 'package:flutter_ecommerce_app/widgets/widgets.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -85,7 +86,13 @@ class MenuListItem extends StatelessWidget {
           ),
         ),
       ),
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => CatalogScreen(title: item.name),
+          ),
+        );
+      },
     );
   }
 }

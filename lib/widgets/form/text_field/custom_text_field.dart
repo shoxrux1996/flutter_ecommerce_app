@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final String title;
+  final String? hintText;
   final Function(String)? onChanged;
 
   const CustomTextFormField({
     super.key,
     required this.title,
+    this.hintText,
     this.onChanged,
   });
 
@@ -15,21 +17,24 @@ class CustomTextFormField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox(
-            width: 75,
+          Flexible(
+            flex: 2,
             child: Text(
               title,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
-          Expanded(
+          Flexible(
+            flex: 5,
             child: TextFormField(
               onChanged: onChanged,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 isDense: true,
-                contentPadding: EdgeInsets.only(left: 10),
-                focusedBorder: UnderlineInputBorder(
+                hintText: hintText,
+                contentPadding: const EdgeInsets.only(left: 10),
+                focusedBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.black),
                 ),
               ),
